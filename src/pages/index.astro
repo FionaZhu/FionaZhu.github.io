@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+const projects = await getCollection('projects');
+---
+
+<BaseLayout>
+  <section>
+    <h1>UX Research Portfolio</h1>
+    <p>Human-centered research & evidence-driven UX case studies.</p>
+  </section>
+
+  <section>
+    <h2>Selected Work</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;">
+      {projects.map(p => <ProjectCard {...p.data} />)}
+    </div>
+  </section>
+</BaseLayout>
